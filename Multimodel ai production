@@ -1,0 +1,194 @@
+---
+name: multimodal-ai-production
+description: >
+  End-to-end production blueprint for multimodal AI campaigns using the 7-Step Multimodal Architecture. Use this skill whenever the user wants to create AI-generated video ads, social media campaigns, brand launch content, or any pipeline combining image generation, video synthesis, voice/audio production, and music scoring. Trigger on: "create a campaign", "AI video ad", "brand launch", "multimodal pipeline", "image to video", "AI production blueprint", "social media campaign", requests involving Midjourney/Flux + Kling/Veo + ElevenLabs + Udio/Suno in combination, or any request for a coordinated multi-tool AI creative workflow. Also trigger when the user wants to write prompts for AI video models, audio meta-tags, or voiceover scripts grounded in a brand identity.
+---
+
+# Multimodal AI Production Pipeline
+
+A structured skill for architecting end-to-end AI content campaigns using the **7-Step Multimodal Cascade**. All assets are anchored to a centralized Brand Manifest to prevent creative drift across pipeline stages.
+
+---
+
+## Core Architecture: The 7-Step Cascade
+
+| Step | Function | Key Tools | Output Spec |
+|------|----------|-----------|-------------|
+| 1. Strategy | Brand manifest, psychographics, positioning | Claude/GPT → Brand Manifest | Markdown doc: tone, HEX colors, lens configs, emotional anchor |
+| 2. Copywriting | Psychological scripting, voiceover, screen text | GPT/Claude → Script | Script with punctuation-injection formatting |
+| 3. Image Generation | Frame 1 hero asset creation | Flux Pro / Midjourney v6.5 + Style Anchor Block | Ultra-high-res .png (≤35% subject occupancy) |
+| 4. Video Generation | Image-to-video motion synthesis | Kling 3.0 / Veo 3.1 | 4K .mp4 blocks at locked framerate |
+| 5. Voiceover Production | Synthetic voice generation | ElevenLabs + pre-cleansed dataset | Clean .wav with inhalation/vocal fry |
+| 6. Soundtrack Composition | Background score | Udio + Step 1 meta-tags | High-fidelity mixed track with 1kHz–3kHz pocket for voiceover |
+| 7. Assembly & Automation | Final conform & deployment | Cowork/Remotion/NLE + Brand LUT | Multi-platform output |
+
+> **Downstream Editing Fallacy**: Never patch problems downstream. If Step 4 looks wrong, go back to Step 3 (or Step 2). Fix the source data state, not the symptom.
+
+---
+
+## Part 1: Brand Manifest & Style Anchor Block (Steps 1–2)
+
+### 1A — Master Style Anchor Block
+
+Every image and video prompt must include this block verbatim. Define it once in Step 1 and inject it unchanged into all downstream prompts.
+
+```
+[Style Anchor: <Brand> Manifest v1.0]
+[Camera: <camera body, e.g. ARRI Alexa Mini LF, Cooke S7i Prime 35mm T2.0>]
+[Lens Protocol: <DoF range, e.g. f/2.8–f/4.0, anamorphic 1.8x squeeze for horizontal flares>]
+[Lighting: <color temp + key style, e.g. 3200K–4200K mixed, high-contrast noir key with negative fill>]
+[Palette: <HEX values with labels, e.g. #0A0A0C (void black), #2C2C2E (brushed titanium)>]
+[Framing: <occupancy rule, e.g. subject occupancy ≤35%, rule-of-thirds negative space>]
+[Texture Guardrails: <material constraints, e.g. zero specular bloom on carbon fiber>]
+[Temporal Lock: 24fps native, 180° shutter simulation, zero motion blur on static elements]
+```
+
+**Checklist before injecting:**
+- [ ] HEX palette defined (minimum 3 colors)
+- [ ] Camera body + lens spec locked
+- [ ] Lighting temperature range specified
+- [ ] Subject occupancy ≤35% (prevents hero shot crowding)
+- [ ] Texture guardrails include "zero specular bloom" for metallic/reflective surfaces
+
+---
+
+### 1B — 15-Second Dual-Column Ad Script
+
+Structure the script as a dual-column table with timecode brackets.
+
+| Timecode | Visual & Motion Cues | Voiceover (Punctuation-Scripted) |
+|----------|---------------------|----------------------------------|
+| 0s–4s | MACRO HERO: Extreme close-up on [hero texture]. Rack focus from [element A] to [element B]. Zero camera shake. | [Brand]... is not a [category]. It is a [statement]— |
+| 4s–9s | ARCHITECTURAL REVEAL: Low-angle dolly glide reveals full silhouette in [environment]. Subject static; camera moves constant velocity. | ...for the [target persona]. Who values [brand value]... over [contrast]. |
+| 9s–12s | HUMAN INTEGRATION: [Human element] interacts with product. Gentle push-in maintains eye-line. | [Benefit]... engineered. For the [context]— |
+| 12s–15s | FINAL LOCK: Wide silhouette against [backdrop]. Brand signature [action]. Fade to black + logotype. | ...[closing line]. |
+
+**Punctuation rules for voiceover scripts:**
+- `,` = brief inhalation pause
+- `.` = full pitch drop + resting breath
+- `...` = slow atmospheric drawl
+- `—` = intentional emphasis break
+
+---
+
+## Part 2: Downstream Engine Prompts (Steps 3, 4, 6)
+
+### 2A — Fused Image Prompt (Step 3: Flux Pro / Midjourney v6.5)
+
+```
+"[State] <static anchor description — no motion>. [Subject Motion] None — static anchor frame. [Camera Motion] None — pristine Frame 1 asset. [Guardrails] Zero motion blur, photorealistic I2V anchor, high temporal stability, zero geometry drift, subject occupancy ≤35%, rule-of-thirds negative space. [Style Anchor: <Brand> Manifest v1.0] <inject full Style Anchor Block verbatim>."
+```
+
+**Critical**: The image must be engineered as an I2V (image-to-video) anchor — not just a beautiful still. Temporal stability and zero geometry drift are non-negotiable keywords.
+
+---
+
+### 2B — Fused Motion Video Prompt (Step 4)
+
+Use the **Dual-Vector structure** — Subject Motion and Camera Motion must always be in separate clauses:
+
+```
+"[State] <repeat static anchor from Step 3>. [Subject Motion] <explicit physics verbs at specific velocity, e.g. smooth linear forward translation at 15km/h equivalent>. [Camera Motion] <cinematic technical term, e.g. motorized dolly left-to-right tracking glide at constant velocity>. [Guardrails] Zero camera shake, 24fps native temporal stability, zero geometry drift on <key textures>. [Style Anchor: <Brand> Manifest v1.0] (injected verbatim). [Audio Specification: High-fidelity diegetic sound only. <foley details>. Zero background music — pure foley for single-pass sync.]"
+```
+
+**Engine Selection Matrix:**
+
+| Engine | Strength | Best Use Case | Tip |
+|--------|----------|--------------|-----|
+| Kling 3.0 | Micro-specular physics, human anatomy | Macro detail, human integration, physics-heavy motion | Pair physics-heavy subject with simple camera moves |
+| Veo 3.1 | Cinematic camera blocking, spatial continuity | Architectural reveals, complex camera terminology | Leverage complex camera terms; keep subject motion moderate |
+| Runway Gen-4.5 | Motion Brush, abstract motion | Experimental/stylized transitions | Use Motion Brush + abstract verbs; avoid photorealistic expectations |
+
+**Operational Rules — Video Prompting:**
+
+| Rule | If Violated | Fix |
+|------|-------------|-----|
+| Never set UI camera controls opposite to text (e.g. UI="Zoom In" + text="crane-down") | Temporal matrix tear → glitching, double heads | Align UI controls with prompt language before render |
+| Avoid vague directives ("fast action", "crazy movement") | Unpredictable noise output | Use explicit technical language: "linear translation at 15km/h equivalent" |
+| Always separate Subject Motion and Camera Motion into distinct clauses | Model rotates objects instead of moving camera | Use bracketed clauses: `[Subject Motion]... [Camera Motion]...` |
+
+---
+
+### 2C — Udio Audio Meta-Tag Prompt (Step 6)
+
+Use **bracketed descriptors only** — never conversational sentences:
+
+```
+[Style: <genre 1>, <genre 2>, <genre 3>, <BPM> BPM]
+[Instrumentation: <instrument 1>, <instrument 2>, <instrument 3 — max 3–4 layers for commercial tracks>]
+[Structure: Intro: <description>], [Build: <description>], [Drop: <description>], [Outro: <description>]
+[Mixing/Production: Tight side-chain compression (-6dB to -9dB dip for voiceover pocket), <additional specs>]
+[Brand Alignment: <brand name + key brand values>]
+```
+
+**Music prompting rules:**
+- Use technical genre names + specific instrument names (e.g. "felt piano", "analog synthesizer") — not mood words like "luxury" or "epic"
+- Limit to 3–4 core instrument layers maximum for commercial background tracks
+- Always include side-chain compression spec so voiceover remains audible: `-6dB to -9dB`
+- Udio > Suno for premium/luxury/cinematic scores; Suno for upbeat pop/vocal-forward tracks
+
+---
+
+## Part 3: Operational Guardrails & Pipeline Failure Points
+
+### 3A — Critical Failure Points (Steps 3→4 Boundary)
+
+| Failure Point | Risk | Engineering Solution |
+|---------------|------|----------------------|
+| **Style Anchor Drift** | Image has full Style Anchor; video model receives truncated prompt → color grade shift, texture loss | **PROMPT HASH VERIFICATION**: Auto-extract `[Style Anchor]` from Step 3 metadata; inject verbatim into Step 4. Use MD5 checksum to verify byte-for-byte identity. Halt pipeline if mismatch >0%. |
+| **Temporal Physics Inconsistency** | Static mist density 0.3 in image; video generates mist at 0.7 during motion → visual discontinuity | **PHYSICS PARAMETER LOCKS**: Embed in `[Guardrails]`: `volumetric mist displacement coefficient = 0.3–0.5, linear correlation with vehicle velocity`. Use Kling 3.0 physics bias mode or Houdini pre-render as ControlNet reference. |
+| **Audio-Visual Desync (Single-Pass Foley)** | Vehicle moves at 15km/h in video; audio transformer generates motor hum at 30km/h pitch → Doppler mismatch | **VELOCITY-TO-FREQUENCY MAPPING**: Bind in `[Audio Specification]`: `motor hum fundamental frequency = 42Hz @ 15km/h, linear pitch shift +2.3Hz per 1km/h`. Enforce foley-only in single-pass; layer background score separately in post. |
+
+---
+
+### 3B — Single-Pass Audio Generation: Critical Constraint
+
+> **Never mix foley + music in single-pass generation.**
+
+- **Single-pass only for**: diegetic foley (footsteps, impacts, motor hum, environmental sound)
+- **Split pipeline (Step 6 separately) for**: music, voiceover, non-diegetic audio
+
+If foley and music are requested together in single-pass, the audio transformer warps foley to match the music's rhythmic structure → corrupted diegetic sync.
+
+**Single-Pass Audio Specification block format:**
+```
+[Audio Specification: High-fidelity diegetic sound. <describe sound physics explicitly, e.g. sub-40Hz motor hum with subtle coil whine, tire friction on polished concrete, distant ambient bed>. Zero background music — pure foley audio.]
+```
+
+---
+
+### 3C — Post-Production Assembly Checklist
+
+| Step | Action | Purpose |
+|------|--------|---------|
+| 1. Frame Alignment | Verify Shot N end-frame lighting matches Shot N+1 start-frame shadow direction | Prevents jarring exposure jumps between I2V outputs |
+| 2. Speed Ramping | Apply 90% speed ramp to emotional hold shots | Smooths DiT micro-jitter |
+| 3. Audio Design | Layer sub-40Hz ambient bed + diegetic foley | Grounds AI visual physics in real-world sensory cues |
+| 4. Voiceover Side-Chain | Side-chain music track: dip -6dB to -9dB whenever voiceover amplitude registers | Prevents voiceover burial |
+| 5. Final Conform | Export ProRes 422, apply brand LUT | Locks brand DNA: color grade, zero noise |
+
+---
+
+## Universal Prompt Validation Checklist
+
+Run before every render:
+
+- [ ] `[State]` clause is static/anchored (no motion implied)
+- [ ] `[Subject Motion]` verbs are physical/explicit (no vagueness)
+- [ ] `[Camera Motion]` terms are cinematic/technical (no amateur directives)
+- [ ] `[Guardrails]` include temporal consistency keywords
+- [ ] Style Anchor Block injected verbatim (checksum-verified)
+- [ ] `[Audio Specification]` block: foley-only for single-pass
+- [ ] Punctuation scripting applied to all voiceover copy
+- [ ] Meta-tag structure used for music prompts (bracketed, not conversational)
+- [ ] Music prompt ≤4 instrument layers
+- [ ] Side-chain compression spec included in Udio prompt
+
+---
+
+## Reference Files
+
+- `references/velo-example.md` — Full expert-level capstone example (VÉLO motorcycle brand) showing every section completed at production quality
+- `references/engine-alignment.md` — Expanded engine selection logic and edge cases
+
+> For a complete worked example at expert level, read `references/velo-example.md` before generating output for a new brand.
