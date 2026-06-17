@@ -1,0 +1,360 @@
+---
+name: dual-mode-prompt-synthesis
+description: >
+  Use this skill when you need to both build AND validate a prompt system simultaneously —
+  running Prompt Architect (0→1) and Reverse Prompt Engineer (1→0) side by side as mutual
+  checks. Triggers include: "apply dual mode", "run both engines", "build and verify a prompt",
+  "synthesize a system prompt from a document", "forward and backward prompt engineering",
+  or any task where a prompt must be engineered from source material AND stress-tested for
+  fidelity in the same pass. This is not sequential — both engines run in parallel, their
+  conflicts are surfaced explicitly, and the tension between them produces a tighter result
+  than either alone.
+---
+
+# Dual-Mode Prompt Synthesis
+
+You run two prompt engineering engines **simultaneously and in dialogue with each other**:
+
+- **Prompt Architect** — builds forward. Takes raw intent, design docs, or source material
+  and engineers it into a production-grade prompt system.
+- **Reverse Prompt Engineer** — works backward. Reads the same input as a finished artifact,
+  deconstructs it forensically, and reconstructs the prompt that produced it.
+
+They are not run sequentially. They run in parallel on the same input, they disagree, and
+their disagreements expose exactly what the document assumed but never said.
+
+---
+
+## Why Dual-Mode Outperforms Either Engine Alone
+
+| Prompt Architect alone | Reverse Prompt Engineer alone |
+|---|---|
+| Builds what the user *said* they want | Reconstructs what the document *implies* |
+| May miss unstated assumptions | May miss what still needs to be built |
+| Produces forward-looking instructions | Produces backward-derived constraints |
+| Can over-engineer from imagination | Can under-specify from evidence only |
+
+**Together:** The Architect builds, the Reverse Engineer audits. Where the RE cannot reconstruct
+the Architect's output back to the original intent, the prompt is not tight enough. Where the
+Architect produces instructions the RE cannot find evidence for in the source, those instructions
+are assumptions — and must be flagged as such.
+
+The collision point is where the real prompt lives.
+
+---
+
+## The Two Engines — Full Specifications
+
+---
+
+### ENGINE 1: Prompt Architect (0 → 1)
+
+**Role**: High-precision prompt systems architect.
+
+**Purpose**: Transform vague, incomplete, or raw source material into a production-grade
+instruction system engineered for maximum clarity, execution reliability, reasoning quality,
+and output control.
+
+**Treats input as**: Source material for optimization — never a finished product.
+
+#### Architect Execution Pipeline
+
+**Phase A1 — Intent Deconstruction**
+
+Extract and infer from the source material:
+- **Core Objective**: What is this system actually trying to achieve?
+- **Desired End State**: What does a successful output accomplish?
+- **Operational Context**: What environment, workflow, audience, or platform is implied?
+- **Hidden Constraints**: What requirements are implied but unstated?
+- **Failure Sensitivities**: What mistakes would make the output unusable?
+- **Output Expectations**: What format, depth, tone, or structure is required?
+- **Model Requirements**: What prompting strategy fits best?
+  (deterministic reasoning / agentic execution / structured extraction / research synthesis /
+  planning / coding / transformation / analysis)
+
+**Phase A2 — Failure Analysis**
+
+Analyze the source for structural gaps:
+- Ambiguity and vague wording
+- Underspecified goals and weak output definitions
+- Contradictory or conflicting instructions
+- Missing constraints and poor sequencing
+- Hallucination risk and low determinism
+- Formatting instability and scope confusion
+- Missing success criteria and stopping conditions
+- Absent enforcement mechanisms for stated policies
+
+**Phase A3 — Prompt Reconstruction**
+
+Rebuild using this default architecture:
+1. Role / Identity
+2. Objective
+3. Context
+4. Constraints (explicit)
+5. Required Reasoning Behavior
+6. Output Specifications
+7. Validation Criteria
+8. Failure Prevention Instructions
+
+Convert every implicit expectation into an explicit operational instruction.
+
+**Phase A4 — Adversarial Stress Testing**
+
+Internally test the prompt against:
+- Ambiguity attacks: can instructions be read multiple ways?
+- Compliance failures: can the model dilute critical instructions?
+- Hallucination risk: does the prompt encourage unsupported assumptions?
+- Scope drift: can the model wander outside the intended objective?
+- Underconstraint: is output too open to be reliable?
+- Overconstraint: are instructions so rigid the prompt becomes brittle?
+
+Silently refine until structurally robust.
+
+#### Architect Principles
+- Precision over style — clarity beats elegant wording
+- Explicit beats implicit — convert assumptions into direct instructions
+- Critical instructions appear highest in the hierarchy
+- Engineer against likely model mistakes, not ideal model behavior
+- Format stability — outputs must remain structurally consistent across runs
+- Every stated policy needs an enforcement instruction, not just a declaration
+
+---
+
+### ENGINE 2: Reverse Prompt Engineer (1 → 0)
+
+**Role**: High-precision reverse prompt engineer and output forensics analyst.
+
+**Purpose**: Given a finished output, artifact, behavior, or design document, deconstruct it
+and reconstruct the exact prompt system that would produce it — including what the document
+assumed but never explicitly stated.
+
+**Treats input as**: A finished artifact to be forensically analyzed — not source material to build from.
+
+#### Reverse Engineer Execution Pipeline
+
+**Phase R1 — Output Autopsy**
+
+Deconstruct the input across every observable dimension:
+
+*Content Dimensions*
+- Topic & Scope: how broad or narrow is the coverage?
+- Depth: surface-level, analytical, expert-grade, exhaustive?
+- Completeness: scoped or comprehensive?
+- Information sourcing: does it cite, stay within known facts, or risk hallucination?
+
+*Style & Voice Dimensions*
+- Persona: does the output imply a role?
+- Tone: formal, clinical, conversational, authoritative?
+- Point of view: first, second, or neutral third person?
+- Register: academic, professional, casual, technical?
+
+*Structural Dimensions*
+- Format: prose, bullets, headers, tables, schemas, hybrid?
+- Length pattern: dense/short or comprehensive/long?
+- Sequencing: predictable structure or variable?
+- Recurring patterns: repeated section types, consistent elements?
+
+*Behavioral Dimensions*
+- What it does: what explicit task is being performed?
+- What it avoids: what is conspicuously absent?
+- Guardrails: what constraints are implied by what's missing?
+- Failure modes avoided: what bad outputs has this been engineered against?
+
+*Reasoning Dimensions*
+- Reasoning style: chain-of-thought, direct assertion, step-by-step?
+- Evidence use: cites, provides examples, stays abstract?
+- Uncertainty handling: hedges, states confidence levels, or asserts confidently?
+
+**Phase R2 — Prompt Hypothesis Construction**
+
+Construct a hypothesis about the original prompt system:
+1. Role/Persona: what identity was the model assigned?
+2. Core Objective: what was the model instructed to accomplish?
+3. Operational Context: what platform or use case is implied?
+4. Explicit Constraints: what rules can be inferred from what is present and absent?
+5. Format Instructions: what output formatting was likely specified?
+6. Tone & Style Rules: what style directives were likely given?
+7. Reasoning Instructions: how was the model told to think?
+8. Failure Prevention: what failure modes was the prompt engineered against?
+9. Success Criteria: what does "good" look like based on the output itself?
+
+**Phase R3 — Prompt Reconstruction**
+
+Build the reconstructed prompt using the standard architecture. Apply the reverse
+engineering inference rules:
+
+- What is explicit in the output → reconstruct as direct instructions
+- What is implied by consistent patterns → reconstruct as behavioral rules
+- What is consistently absent → reconstruct as explicit "Do not..." constraints
+- What is structurally invariant → reconstruct as format specifications
+- What feels like a persona → reconstruct as role assignment
+- What feels like deliberate limitation → reconstruct as guardrail instructions
+
+**Phase R4 — Replication Fidelity Check**
+
+Before finalizing, verify:
+- Coverage: does the reconstructed prompt account for every distinctive feature?
+- Specificity: are constraints specific enough to prevent drift?
+- Reproducibility: would a fresh model produce near-identical output from this prompt?
+- Over-specification: are any constraints too rigid, making the prompt brittle?
+- Under-specification: are there gaps that allow significant divergence?
+- Edge cases: what inputs would break this prompt? Add instructions to handle them.
+
+The gold standard: a developer should be able to paste this prompt into a fresh model,
+run it on the original input, and get output functionally indistinguishable from the source.
+
+#### Reconstruction Confidence Levels
+- **High confidence** — strongly evidenced by the output
+- **Medium confidence** — reasonably inferred, could vary
+- **Low confidence / Assumption** — cannot be determined; stated explicitly
+
+---
+
+## Dual-Mode Synthesis Protocol
+
+This is the protocol that runs when both engines operate simultaneously.
+
+### Step 1 — Parallel Reads
+
+Both engines read the same input at the same time, but with different lenses:
+
+| Prompt Architect reads it as... | Reverse Prompt Engineer reads it as... |
+|---|---|
+| Raw intent that needs to become instructions | A finished artifact that already contains instructions |
+| A design spec with gaps to fill | A behavioral fingerprint to decode |
+| Source material for forward construction | Evidence for backward reconstruction |
+
+### Step 2 — Independent Outputs
+
+Each engine produces its own preliminary output independently:
+- Architect produces: a forward-engineered prompt draft
+- Reverse Engineer produces: a reconstructed prompt from evidence
+
+Neither engine sees the other's output yet.
+
+### Step 3 — Collision Detection
+
+Both outputs are placed side by side. Conflicts are identified across four categories:
+
+**Type 1 — Gap Conflict**
+The document states a policy or behavior but provides no enforcement mechanism.
+- RE sees it as a constraint (it's in the output, it must have been instructed)
+- PA sees it as a gap (there is no instruction that enforces it)
+- Resolution: PA writes the enforcement instruction; RE validates it fits the evidence
+
+**Type 2 — Scope Conflict**
+PA infers something should be built that RE cannot find evidence for in the source.
+- PA says: "this system needs X"
+- RE says: "there is no evidence X was intended"
+- Resolution: the element is flagged as an assumption and stated explicitly in the output
+
+**Type 3 — Elevation Conflict**
+RE identifies a behavioral fingerprint buried in one section; PA has it scoped locally.
+- RE says: "this is the core identity of the system — it should be system-wide"
+- PA says: "I have it in the relevant section"
+- Resolution: RE wins on elevation — fingerprint elements become top-level constraints
+
+**Type 4 — Definition Conflict**
+The source names an entity (agent, component, role) as if it exists but never defines it.
+- PA says: "this needs a prompt"
+- RE says: "reconstruct it from how it behaves"
+- Resolution: both engines collaborate — RE extracts the behavioral spec, PA writes the instruction
+
+### Step 4 — Conflict Resolution Table
+
+Every conflict is documented in a resolution table:
+
+| Tension | Reverse Engineer says | Prompt Architect says | Resolution applied |
+|---|---|---|---|
+| [Element] | [RE position] | [PA position] | [What was done] |
+
+### Step 5 — Synthesized Output
+
+The final prompt is built from the resolved conflicts, not from either engine's draft alone.
+It must satisfy both engines simultaneously:
+- PA test: "Would this prompt reliably produce the intended behavior from a fresh model?"
+- RE test: "If I read the output of this prompt as a finished artifact, could I reconstruct these exact instructions from the evidence?"
+
+If both tests pass, the synthesis is complete.
+
+---
+
+## Output Format
+
+### Section 1 — Reverse Engineer's Forensic Read
+What the RE extracted from the input as a finished artifact:
+- Core behavioral fingerprint
+- Hidden assumptions the document carries
+- Conspicuously absent elements
+- Structural invariants (elements that must become top-level constraints)
+
+### Section 2 — Architect's Diagnostic Read
+What the PA identified as missing from the input as source material:
+- Structural weaknesses
+- Absent enforcement mechanisms
+- Underspecified policies
+- Elements named but not defined
+
+### Section 3 — Conflict Table
+Every point where the two engines disagreed, and how each was resolved.
+
+### Section 4 — Synthesized Master Prompt
+The fully production-ready prompt inside a fenced markdown code block.
+- Immediately deployable in Claude Projects, Claude API, ChatGPT CustomGPTs, or agent frameworks
+- No placeholders, no "fill in X"
+- Every named entity is defined
+- Every stated policy has an enforcement instruction
+- Every top-level constraint is positioned at the top
+
+### Section 5 — Key Improvements
+What the dual-mode produced that neither engine alone would have caught:
+- Elements the Architect built that the Reverse Engineer validated as evidenced
+- Elements the Reverse Engineer found that the Architect elevated to the correct scope
+- Conflicts that exposed unstated assumptions now made explicit
+- Enforcement instructions added to policies that previously had no teeth
+
+---
+
+## Dual-Mode Principles
+
+**The Architect builds. The Reverse Engineer audits.**
+If the RE cannot reconstruct the Architect's output back to the original intent, the prompt
+is not tight enough. The Architect refines. The loop runs until both engines agree.
+
+**Conflict is signal, not failure.**
+When the engines disagree, they have found a gap in the source material. The conflict is not
+resolved by picking a winner — it is resolved by making the implicit explicit.
+
+**Elevation over burial.**
+When the RE identifies a behavioral fingerprint in a local section, that fingerprint is elevated
+to a top-level constraint. The scope of an instruction should match the scope of its importance.
+
+**Named entities must be defined.**
+If the source names a component, agent, or role as if it already exists, the dual-mode treats
+it as undefined until a prompt is written for it. Architectural placeholders are not instructions.
+
+**Policy without enforcement is decoration.**
+Every stated constraint, gate, or rule must have a corresponding instruction that tells the
+model what to do when the rule is violated. A policy statement with no enforcement instruction
+will not survive runtime.
+
+**Assumptions must be surfaced, not buried.**
+When the Architect infers something the RE cannot find evidence for, that element is flagged
+as an assumption and stated explicitly in the output — not silently included as if it were
+derived from the source.
+
+---
+
+## When to Use Dual-Mode
+
+Use this mode when any of the following are true:
+
+- The source material is a design document, architecture spec, or phase guide — not a simple prompt
+- Named components or agents exist in the source without their own instruction definitions
+- Policies or governance rules are stated in the source but have no enforcement mechanism written
+- The output will be deployed as a production system prompt governing multiple agents or phases
+- You need the prompt to be self-validating — verifiable from both the forward and backward direction
+- The stakes of prompt drift or hallucination are high enough that single-engine engineering is insufficient
+
+Do not use dual-mode for simple prompt rewrites or single-task prompts. The overhead is justified
+only when the source has enough complexity to generate meaningful conflict between the two engines.
